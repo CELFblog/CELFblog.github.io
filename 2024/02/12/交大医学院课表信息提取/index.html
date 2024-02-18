@@ -6,15 +6,21 @@
   
   <title>交大医学院课表信息提取 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="article">
+  <meta name="description" content="Wakeup课程表你匹配了个锤子！哦可能不是课程表的问题，反正Wakeup课程表和学校教务网站总得有一个背锅（点头 问题Wakeup课程表无法通过学校教务导入本学期课表（但是能够导入上学期的课表） 解决流程 可以看到通过学校教务导入大概长这样 在电脑端复制网页的HTML文件直接通过HTML导入，显示失败 阅读网页源代码，看到以下代码123456789101112131415161718events">
+<meta property="og:type" content="article">
 <meta property="og:title" content="交大医学院课表信息提取">
 <meta property="og:url" content="http://example.com/2024/02/12/%E4%BA%A4%E5%A4%A7%E5%8C%BB%E5%AD%A6%E9%99%A2%E8%AF%BE%E8%A1%A8%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Wakeup课程表你匹配了个锤子！哦可能不是课程表的问题，反正Wakeup课程表和学校教务网站总得有一个背锅（点头 问题Wakeup课程表无法通过学校教务导入本学期课表（但是能够导入上学期的课表） 解决流程 可以看到通过学校教务导入大概长这样 在电脑端复制网页的HTML文件直接通过HTML导入，显示失败 阅读网页源代码，看到以下代码123456789101112131415161718events">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2024/02/12/%E4%BA%A4%E5%A4%A7%E5%8C%BB%E5%AD%A6%E9%99%A2%E8%AF%BE%E8%A1%A8%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/64366f327982144d17f8612da31f79f.jpg">
+<meta property="og:image" content="http://example.com/2024/02/12/%E4%BA%A4%E5%A4%A7%E5%8C%BB%E5%AD%A6%E9%99%A2%E8%AF%BE%E8%A1%A8%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/1708144984619.png">
 <meta property="article:published_time" content="2024-02-12T12:00:00.000Z">
-<meta property="article:modified_time" content="2024-02-15T14:07:51.279Z">
+<meta property="article:modified_time" content="2024-02-17T16:00:28.629Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Others">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/02/12/%E4%BA%A4%E5%A4%A7%E5%8C%BB%E5%AD%A6%E9%99%A2%E8%AF%BE%E8%A1%A8%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/64366f327982144d17f8612da31f79f.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -75,6 +81,10 @@
   <time class="dt-published" datetime="2024-02-12T12:00:00.000Z" itemprop="datePublished">2024-02-12</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Ciel/">Ciel</a>►<a class="article-category-link" href="/categories/Luxx/">Luxx</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -91,14 +101,33 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <p>Wakeup课程表你匹配了个锤子！<br>哦可能不是课程表的问题，反正Wakeup课程表和学校教务网站总得有一个背锅（点头</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>Wakeup课程表无法通过学校教务导入本学期课表（但是能够导入上学期的课表）</p>
+<h2 id="解决流程"><a href="#解决流程" class="headerlink" title="解决流程"></a>解决流程</h2><ol>
+<li>可以看到通过学校教务导入大概长这样<br><img src="/2024/02/12/%E4%BA%A4%E5%A4%A7%E5%8C%BB%E5%AD%A6%E9%99%A2%E8%AF%BE%E8%A1%A8%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/64366f327982144d17f8612da31f79f.jpg" alt="Wakeup学校教务导入"></li>
+<li>在电脑端复制网页的HTML文件直接通过HTML导入，显示失败</li>
+<li>阅读网页源代码，看到以下代码<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">events: function (start, end, timezone, callback) &#123;</span><br><span class="line">             var startdate = dateToString(new Date(start));</span><br><span class="line">             var enddate = dateToString(new Date(end));</span><br><span class="line">             //alert(dateToString(startdate) + &quot;  &quot; + dateToString(enddate) + &quot;  &quot; + timezone);</span><br><span class="line">             var params = &#123;</span><br><span class="line">                 Start: startdate,</span><br><span class="line">                 End: enddate,</span><br><span class="line">             &#125;;</span><br><span class="line">             //Ewin.alert(&quot;加载中......&quot;);</span><br><span class="line">             $.ajax(&#123;</span><br><span class="line">                 url: &#x27;/Home/GetCurriculumTable&#x27;,</span><br><span class="line">                 type: &quot;get&quot;,</span><br><span class="line">                 dataType: &#x27;json&#x27;,</span><br><span class="line">                 async: false,</span><br><span class="line">                 data: params,</span><br><span class="line">                 success: function (json) &#123; // 获取当前月的数据</span><br><span class="line">                     //showLoading(false);</span><br><span class="line">                     ...</span><br></pre></td></tr></table></figure></li>
+<li>将<code>https://webvpn2.shsmu.edu.cn/https/&lt;some_code&gt;/Home/Timetable</code>改为<code>https://webvpn2.shsmu.edu.cn/https/&lt;some_code&gt;/Home/GetCurriculumTable</code>，返回值为<code>&#123;&quot;Title&quot;:null,&quot;List&quot;:null,&quot;List2&quot;:null,&quot;StuExam&quot;:null,&quot;Times&quot;:null&#125;</code></li>
+<li>拷打ChatGPT，在<code>Inspect</code>的<code>Network</code>选项卡中找到<code>https://webvpn2.shsmu.edu.cn/https/&lt;some_code&gt;/Home/GetCurriculumTable?vpn-12-o2-jwstu.shsmu.edu.cn&amp;Start=2024-02-17&amp;End=2024-02-18</code></li>
+<li>虽然不知道是个什么玩意，但是<code>Start</code>和<code>End</code>看着明显不对，使用<code>https://webvpn2.shsmu.edu.cn/https/&lt;some_code&gt;/Home/GetCurriculumTable?vpn-12-o2-jwstu.shsmu.edu.cn&amp;Start=2024-02-17&amp;End=2024-08-21</code>得到课表数据，格式与(1)中一致。</li>
+<li>保存后通过html导入，成功</li>
+</ol>
+<h2 id="复盘-其他问题"><a href="#复盘-其他问题" class="headerlink" title="复盘&amp;其他问题"></a>复盘&amp;其他问题</h2><ol>
+<li>在(3)中其实能够看出一点端倪：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var startdate = dateToString(new Date(start));</span><br><span class="line">             var enddate = dateToString(new Date(end));</span><br><span class="line">             //alert(dateToString(startdate) + &quot;  &quot; + dateToString(enddate) + &quot;  &quot; + timezone);</span><br><span class="line">             var params = &#123;</span><br><span class="line">                 Start: startdate,</span><br><span class="line">                 End: enddate,</span><br><span class="line">             &#125;;</span><br></pre></td></tr></table></figure></li>
+<li>不知道为啥导进去之后显示很奇怪一定要从2023年9月开始算课表才对的上（我个人认为这是Wakeup课表开发者的问题）</li>
+<li>估计要学学网页前端知识了</li>
+<li><img src="/2024/02/12/%E4%BA%A4%E5%A4%A7%E5%8C%BB%E5%AD%A6%E9%99%A2%E8%AF%BE%E8%A1%A8%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/1708144984619.png" alt="对啊为啥呢"></li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/12/%E4%BA%A4%E5%A4%A7%E5%8C%BB%E5%AD%A6%E9%99%A2%E8%AF%BE%E8%A1%A8%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" data-id="clsolbbun00042ovg3f27hf3k" data-title="交大医学院课表信息提取" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/12/%E4%BA%A4%E5%A4%A7%E5%8C%BB%E5%AD%A6%E9%99%A2%E8%AF%BE%E8%A1%A8%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" data-id="clsqy2ppn000db8vga9bbauhu" data-title="交大医学院课表信息提取" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Others/" rel="tag">Others</a></li></ul>
+
     </footer>
   </div>
   
@@ -129,7 +158,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Luxx/">Luxx</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Luxx/Others/">Others</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redrocer/">Redrocer</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Redrocer/Others/">Others</a></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Ciel/">Ciel</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Luxx/">Luxx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redrocer/">Redrocer</a></li></ul>
     </div>
   </div>
 
@@ -139,7 +168,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/" rel="tag">Blog</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/" rel="tag">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Others/" rel="tag">Others</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li></ul>
     </div>
   </div>
 
@@ -149,7 +178,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Blog/" style="font-size: 10px;">Blog</a>
+      <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/Others/" style="font-size: 10px;">Others</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a>
     </div>
   </div>
 
@@ -171,6 +200,10 @@
       <ul>
         
           <li>
+            <a href="/2024/02/18/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E7%AE%80%E5%8D%95%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/">hexo博客中简单添加图片</a>
+          </li>
+        
+          <li>
             <a href="/2024/02/16/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97%E4%B8%8E%E9%97%AE%E9%A2%98/">hexo博客使用指南与问题</a>
           </li>
         
@@ -184,10 +217,6 @@
         
           <li>
             <a href="/2024/02/15/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/14/%E3%80%8A%E9%A3%9E%E9%A9%B0%E4%BA%BA%E7%94%9F2%E3%80%8B%E5%BD%B1%E8%AF%84/">《飞驰人生2》影评</a>
           </li>
         
       </ul>

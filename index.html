@@ -69,6 +69,63 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-hexo博客中简单添加图片" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/18/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E7%AE%80%E5%8D%95%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/" class="article-date">
+  <time class="dt-published" datetime="2024-02-17T16:37:59.000Z" itemprop="datePublished">2024-02-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Luxx/">Luxx</a>►<a class="article-category-link" href="/categories/Redrocer/">Redrocer</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/18/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E7%AE%80%E5%8D%95%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/">hexo博客中简单添加图片</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在hexo博客中，添加图片比较麻烦：首先，需要将图片保存到目标文件夹中，其次需要引用该图片，引用方式与一般markdown不同。<br>具体使用方法可以参考：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/tag-plugins">标签插件</a><br>但是这种方法</p>
+<ol>
+<li>不能直接在vscode的Markdown插件中预览</li>
+<li>图片都放在一起，不能很好管理<br>因此需要hexo博客中简单添加图片的新方法</li>
+</ol>
+<h2 id="使用Ctrl-V直接在本地保存图片"><a href="#使用Ctrl-V直接在本地保存图片" class="headerlink" title="使用Ctrl-V直接在本地保存图片"></a>使用<code>Ctrl-V</code>直接在本地保存图片</h2><p>在vscode的<code>settings.json</code>中添加<code>&quot;markdown.copyFiles.destination&quot;: &#123;&quot;**&quot;: &quot;$&#123;documentBaseName&#125;/&quot;&#125;</code><br>注：使用<code>$&#123;documentBaseName&#125;</code>是为了与hexo的资源文件夹形成联动<br>参考资料：<br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/75831497/how-can-i-paste-images-into-my-markdown-files-in-vs-code">How can I paste images into my markdown files in VS Code?</a><br><a target="_blank" rel="noopener" href="https://github.com/microsoft/vscode/issues/183560">Markdown: Paste image from clipboard - image filename</a></p>
+<h2 id="使用hexo-asset-link在hexo中渲染图片"><a href="#使用hexo-asset-link在hexo中渲染图片" class="headerlink" title="使用hexo-asset-link在hexo中渲染图片"></a>使用<code>hexo-asset-link</code>在hexo中渲染图片</h2><p>hexo和markdown的渲染（是应该用这个词吗？）方式好像不太一样<br>第一次尝试是使用hexo官网推荐的资源文件夹配合<code>hexo-renderer-marked</code>（链接在<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/asset-folders">这里</a>），但是效果不好（无法在黏贴图片后直接在hexo中直接渲染出来，因为黏贴时的路径比hexo要求的路径多了一个<filename>）。在google上搜索后找到了另一个用hexo写博客的老哥给出的完美解决方案：<br><a target="_blank" rel="noopener" href="https://chrismroberts.com/2020/01/06/using-markdown-in-hexo-to-add-images/">Adding Images to Hexo Posts with Markdown</a><br>解决方法是在<code>_config.yml</code>中，将</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: false</span><br></pre></td></tr></table></figure>
+<p>改为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure>
+<p>之后在终端中运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -s hexo-asset-link</span><br></pre></td></tr></table></figure>
+<p>即可。<br>最终效果只需要<code>ctrl-v</code>就能将剪切版的图片保存，并在markdown文档中生成markdown预览与hexo博客渲染皆可的图片链接。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/18/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E7%AE%80%E5%8D%95%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/" data-id="clsqy2ppe0002b8vgdaa7b6qz" data-title="hexo博客中简单添加图片" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/" rel="tag">blog</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-hexo博客搭建指南与问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/02/16/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97%E4%B8%8E%E9%97%AE%E9%A2%98/" class="article-date">
@@ -76,7 +133,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Luxx/">Luxx</a>►<a class="article-category-link" href="/categories/Luxx/Others/">Others</a>►<a class="article-category-link" href="/categories/Redrocer/">Redrocer</a>►<a class="article-category-link" href="/categories/Redrocer/Others/">Others</a>
+    <a class="article-category-link" href="/categories/Luxx/">Luxx</a>►<a class="article-category-link" href="/categories/Redrocer/">Redrocer</a>
   </div>
 
   </div>
@@ -99,9 +156,7 @@
 <h2 id="Hexo博客-github-pages"><a href="#Hexo博客-github-pages" class="headerlink" title="Hexo博客&amp;github pages"></a>Hexo博客&amp;github pages</h2><p>理论上只要跟着官方文档的“一键部署”步骤就行了（<br>但是这次有个比较特别的情况，我之前有一个github账号，这次为了建立这个博客重新创建了一个github账号，但<code>ssh -T git@github.com</code>的结果是原先的账号。<br>清除了一些git的缓存并且做出了一些尝试（真的有用吗？），发现有用但用处不大（</p>
 <ol>
 <li><code>git config core.sshCommand &quot;ssh -i ~/.ssh/CELFblog_rsa&quot;</code>我希望它能在当前目录下用CELFblog的rsa，但是不知道为啥没有用</li>
-<li>改变<code>~/.ssh/config</code>的值为<blockquote>
-<p>Host github.com<br>HostName github.com<br>IdentityFile ~&#x2F;.ssh&#x2F;CELFblog_rsa</p>
-</blockquote>
+<li>改变<code>~/.ssh/config</code>的值为<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">IdentityFile ~/.ssh/CELFblog_rsa</span><br></pre></td></tr></table></figure>
 这个真有用，<code>ssh -T git@github.com</code>的结果变为新账号</li>
 <li>在<code>ssh</code>结果默认新账号之后，试图用<code>hexo d</code>进行部署，发现每次都需要输入账号名和密码（不能用注册的密码，需要使用github的Github Access Token(GAT)登录，太烦了。各种<code>git config --unset --global</code>啥的，<code>credential.helper</code>也试了但是没有用</li>
 <li>最后的解决方法是将<code>_config.yml</code>改为 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo: https://&lt;Username&gt;:&lt;GAT&gt;@github.com/&lt;Username&gt;/&lt;Repositoryname&gt;.github.io.git</span><br><span class="line">branch: gh-pages</span><br></pre></td></tr></table></figure>
@@ -120,7 +175,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/16/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97%E4%B8%8E%E9%97%AE%E9%A2%98/" data-id="clsotcd7r0000t8vg13hxaorz" data-title="hexo博客使用指南与问题" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/16/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97%E4%B8%8E%E9%97%AE%E9%A2%98/" data-id="clsqy2ppk0009b8vgbnlq8mvs" data-title="hexo博客使用指南与问题" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -157,16 +212,16 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>To train a model using NLTK for sorting reviews into three classes (-1, 0, 1), you can follow these general steps:</p>
-<h1 id="Data-Preparation"><a href="#Data-Preparation" class="headerlink" title="Data Preparation:"></a>Data Preparation:</h1><p>Prepare your review data, ensuring it is labeled with one of the three classes (-1, 0, 1).<br>Split your data into a training set and a test set.</p>
-<h1 id="Text-Preprocessing"><a href="#Text-Preprocessing" class="headerlink" title="Text Preprocessing:"></a>Text Preprocessing:</h1><p>Tokenize your text data (split it into individual words or tokens).<br>Optionally, remove stopwords (common words that may not carry much meaning) and perform stemming or lemmatization to reduce words to their base form.</p>
-<h1 id="Feature-Extraction"><a href="#Feature-Extraction" class="headerlink" title="Feature Extraction:"></a>Feature Extraction:</h1><p>Convert your text data into a numerical representation that can be used by machine learning algorithms. One common approach is using TF-IDF (Term Frequency-Inverse Document Frequency) to convert text into numerical features.</p>
-<h1 id="Model-Training"><a href="#Model-Training" class="headerlink" title="Model Training:"></a>Model Training:</h1><p>Choose a machine learning model suitable for text classification, such as Naive Bayes, SVM, or logistic regression.<br>Train your model using the training set.</p>
-<h1 id="Model-Evaluation"><a href="#Model-Evaluation" class="headerlink" title="Model Evaluation:"></a>Model Evaluation:</h1><p>Evaluate the performance of your model using the test set.<br>You can use metrics such as accuracy, precision, recall, or F1-score to evaluate the performance of your model.</p>
+<h2 id="Data-Preparation"><a href="#Data-Preparation" class="headerlink" title="Data Preparation:"></a>Data Preparation:</h2><p>Prepare your review data, ensuring it is labeled with one of the three classes (-1, 0, 1).<br>Split your data into a training set and a test set.</p>
+<h2 id="Text-Preprocessing"><a href="#Text-Preprocessing" class="headerlink" title="Text Preprocessing:"></a>Text Preprocessing:</h2><p>Tokenize your text data (split it into individual words or tokens).<br>Optionally, remove stopwords (common words that may not carry much meaning) and perform stemming or lemmatization to reduce words to their base form.</p>
+<h2 id="Feature-Extraction"><a href="#Feature-Extraction" class="headerlink" title="Feature Extraction:"></a>Feature Extraction:</h2><p>Convert your text data into a numerical representation that can be used by machine learning algorithms. One common approach is using TF-IDF (Term Frequency-Inverse Document Frequency) to convert text into numerical features.</p>
+<h2 id="Model-Training"><a href="#Model-Training" class="headerlink" title="Model Training:"></a>Model Training:</h2><p>Choose a machine learning model suitable for text classification, such as Naive Bayes, SVM, or logistic regression.<br>Train your model using the training set.</p>
+<h2 id="Model-Evaluation"><a href="#Model-Evaluation" class="headerlink" title="Model Evaluation:"></a>Model Evaluation:</h2><p>Evaluate the performance of your model using the test set.<br>You can use metrics such as accuracy, precision, recall, or F1-score to evaluate the performance of your model.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/15/EECS445-Proj1-review/" data-id="clsolbbua00002ovg2klae08o" data-title="EECS445 Proj1 review" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/15/EECS445-Proj1-review/" data-id="clsqy2pp70000b8vgfz2m891z" data-title="EECS445 Proj1 review" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -200,11 +255,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <p><img src="/2024/02/15/%E3%80%8A%E7%AC%AC%E4%BA%8C%E5%8D%81%E6%9D%A1%E3%80%8B%E5%BD%B1%E8%AF%84/64366f327982144d17f8612da31f79f.jpg" alt="alt text"></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/15/%E3%80%8A%E7%AC%AC%E4%BA%8C%E5%8D%81%E6%9D%A1%E3%80%8B%E5%BD%B1%E8%AF%84/" data-id="clsolbbuh00022ovgflz2193d" data-title="《第二十条》影评" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/15/%E3%80%8A%E7%AC%AC%E4%BA%8C%E5%8D%81%E6%9D%A1%E3%80%8B%E5%BD%B1%E8%AF%84/" data-id="clsqy2ppl000ab8vg0s5n1rzc" data-title="《第二十条》影评" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -255,7 +311,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/15/hello-world/" data-id="clsolbbug00012ovg470kai7l" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/15/hello-world/" data-id="clsqy2ppc0001b8vg0gb8ez8z" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -293,7 +349,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/14/%E3%80%8A%E9%A3%9E%E9%A9%B0%E4%BA%BA%E7%94%9F2%E3%80%8B%E5%BD%B1%E8%AF%84/" data-id="clsolbbuj00032ovgebepesou" data-title="《飞驰人生2》影评" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/14/%E3%80%8A%E9%A3%9E%E9%A9%B0%E4%BA%BA%E7%94%9F2%E3%80%8B%E5%BD%B1%E8%AF%84/" data-id="clsqy2ppm000cb8vgbcgge19a" data-title="《飞驰人生2》影评" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -311,6 +367,10 @@
   <time class="dt-published" datetime="2024-02-12T12:00:00.000Z" itemprop="datePublished">2024-02-12</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Ciel/">Ciel</a>►<a class="article-category-link" href="/categories/Luxx/">Luxx</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -327,14 +387,33 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <p>Wakeup课程表你匹配了个锤子！<br>哦可能不是课程表的问题，反正Wakeup课程表和学校教务网站总得有一个背锅（点头</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>Wakeup课程表无法通过学校教务导入本学期课表（但是能够导入上学期的课表）</p>
+<h2 id="解决流程"><a href="#解决流程" class="headerlink" title="解决流程"></a>解决流程</h2><ol>
+<li>可以看到通过学校教务导入大概长这样<br><img src="/2024/02/12/%E4%BA%A4%E5%A4%A7%E5%8C%BB%E5%AD%A6%E9%99%A2%E8%AF%BE%E8%A1%A8%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/64366f327982144d17f8612da31f79f.jpg" alt="Wakeup学校教务导入"></li>
+<li>在电脑端复制网页的HTML文件直接通过HTML导入，显示失败</li>
+<li>阅读网页源代码，看到以下代码<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">events: function (start, end, timezone, callback) &#123;</span><br><span class="line">             var startdate = dateToString(new Date(start));</span><br><span class="line">             var enddate = dateToString(new Date(end));</span><br><span class="line">             //alert(dateToString(startdate) + &quot;  &quot; + dateToString(enddate) + &quot;  &quot; + timezone);</span><br><span class="line">             var params = &#123;</span><br><span class="line">                 Start: startdate,</span><br><span class="line">                 End: enddate,</span><br><span class="line">             &#125;;</span><br><span class="line">             //Ewin.alert(&quot;加载中......&quot;);</span><br><span class="line">             $.ajax(&#123;</span><br><span class="line">                 url: &#x27;/Home/GetCurriculumTable&#x27;,</span><br><span class="line">                 type: &quot;get&quot;,</span><br><span class="line">                 dataType: &#x27;json&#x27;,</span><br><span class="line">                 async: false,</span><br><span class="line">                 data: params,</span><br><span class="line">                 success: function (json) &#123; // 获取当前月的数据</span><br><span class="line">                     //showLoading(false);</span><br><span class="line">                     ...</span><br></pre></td></tr></table></figure></li>
+<li>将<code>https://webvpn2.shsmu.edu.cn/https/&lt;some_code&gt;/Home/Timetable</code>改为<code>https://webvpn2.shsmu.edu.cn/https/&lt;some_code&gt;/Home/GetCurriculumTable</code>，返回值为<code>&#123;&quot;Title&quot;:null,&quot;List&quot;:null,&quot;List2&quot;:null,&quot;StuExam&quot;:null,&quot;Times&quot;:null&#125;</code></li>
+<li>拷打ChatGPT，在<code>Inspect</code>的<code>Network</code>选项卡中找到<code>https://webvpn2.shsmu.edu.cn/https/&lt;some_code&gt;/Home/GetCurriculumTable?vpn-12-o2-jwstu.shsmu.edu.cn&amp;Start=2024-02-17&amp;End=2024-02-18</code></li>
+<li>虽然不知道是个什么玩意，但是<code>Start</code>和<code>End</code>看着明显不对，使用<code>https://webvpn2.shsmu.edu.cn/https/&lt;some_code&gt;/Home/GetCurriculumTable?vpn-12-o2-jwstu.shsmu.edu.cn&amp;Start=2024-02-17&amp;End=2024-08-21</code>得到课表数据，格式与(1)中一致。</li>
+<li>保存后通过html导入，成功</li>
+</ol>
+<h2 id="复盘-其他问题"><a href="#复盘-其他问题" class="headerlink" title="复盘&amp;其他问题"></a>复盘&amp;其他问题</h2><ol>
+<li>在(3)中其实能够看出一点端倪：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var startdate = dateToString(new Date(start));</span><br><span class="line">             var enddate = dateToString(new Date(end));</span><br><span class="line">             //alert(dateToString(startdate) + &quot;  &quot; + dateToString(enddate) + &quot;  &quot; + timezone);</span><br><span class="line">             var params = &#123;</span><br><span class="line">                 Start: startdate,</span><br><span class="line">                 End: enddate,</span><br><span class="line">             &#125;;</span><br></pre></td></tr></table></figure></li>
+<li>不知道为啥导进去之后显示很奇怪一定要从2023年9月开始算课表才对的上（我个人认为这是Wakeup课表开发者的问题）</li>
+<li>估计要学学网页前端知识了</li>
+<li><img src="/2024/02/12/%E4%BA%A4%E5%A4%A7%E5%8C%BB%E5%AD%A6%E9%99%A2%E8%AF%BE%E8%A1%A8%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/1708144984619.png" alt="对啊为啥呢"></li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/02/12/%E4%BA%A4%E5%A4%A7%E5%8C%BB%E5%AD%A6%E9%99%A2%E8%AF%BE%E8%A1%A8%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" data-id="clsolbbun00042ovg3f27hf3k" data-title="交大医学院课表信息提取" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/02/12/%E4%BA%A4%E5%A4%A7%E5%8C%BB%E5%AD%A6%E9%99%A2%E8%AF%BE%E8%A1%A8%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" data-id="clsqy2ppn000db8vga9bbauhu" data-title="交大医学院课表信息提取" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Others/" rel="tag">Others</a></li></ul>
+
     </footer>
   </div>
   
@@ -353,7 +432,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Luxx/">Luxx</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Luxx/Others/">Others</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redrocer/">Redrocer</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Redrocer/Others/">Others</a></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Ciel/">Ciel</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Luxx/">Luxx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Redrocer/">Redrocer</a></li></ul>
     </div>
   </div>
 
@@ -363,7 +442,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/" rel="tag">Blog</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/" rel="tag">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Others/" rel="tag">Others</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li></ul>
     </div>
   </div>
 
@@ -373,7 +452,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Blog/" style="font-size: 10px;">Blog</a>
+      <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/Others/" style="font-size: 10px;">Others</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a>
     </div>
   </div>
 
@@ -395,6 +474,10 @@
       <ul>
         
           <li>
+            <a href="/2024/02/18/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E7%AE%80%E5%8D%95%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/">hexo博客中简单添加图片</a>
+          </li>
+        
+          <li>
             <a href="/2024/02/16/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97%E4%B8%8E%E9%97%AE%E9%A2%98/">hexo博客使用指南与问题</a>
           </li>
         
@@ -408,10 +491,6 @@
         
           <li>
             <a href="/2024/02/15/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/14/%E3%80%8A%E9%A3%9E%E9%A9%B0%E4%BA%BA%E7%94%9F2%E3%80%8B%E5%BD%B1%E8%AF%84/">《飞驰人生2》影评</a>
           </li>
         
       </ul>
