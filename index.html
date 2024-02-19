@@ -69,6 +69,60 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-交医课表提取iCal日历并导入iOS" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/19/%E4%BA%A4%E5%8C%BB%E8%AF%BE%E8%A1%A8%E6%8F%90%E5%8F%96iCal%E6%97%A5%E5%8E%86%E5%B9%B6%E5%AF%BC%E5%85%A5iOS/" class="article-date">
+  <time class="dt-published" datetime="2024-02-19T06:59:19.000Z" itemprop="datePublished">2024-02-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Ciel/">Ciel</a>►<a class="article-category-link" href="/categories/Luxx/">Luxx</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/19/%E4%BA%A4%E5%8C%BB%E8%AF%BE%E8%A1%A8%E6%8F%90%E5%8F%96iCal%E6%97%A5%E5%8E%86%E5%B9%B6%E5%AF%BC%E5%85%A5iOS/">交医课表提取iCal日历并导入iOS</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Wakeup课程表的问题在于不能看到课程内容<br>我们知道iCal文件可以用于iOS系统的日历<br>也就是要从交医课表的json里面搞出iCal格式然后添加内容，最后导入iOS日历中</p>
+<h2 id="交医课表json提取"><a href="#交医课表json提取" class="headerlink" title="交医课表json提取"></a>交医课表json提取</h2><p>见“交大医学院课表信息提取”；其中的“HTML导入”其实导入的是json文件</p>
+<h2 id="iCal格式转换"><a href="#iCal格式转换" class="headerlink" title="iCal格式转换"></a>iCal格式转换</h2><p>首先，python本身有<code>icalendar</code>包。但是因为不明原因（大概是python interpreter选错了）所以用不了。没关系，用字符串一样的。<br>其中主要是需要注意json的解析：<br>对于已知的json，一般使用<code>json_datas = json.loads(file_contents)</code><br>对于网页上提取的代码，可以使用<code>response.json()</code>，这个函数好像可以自动提取网页里面的json（如果有的话）<br>通过<code>json[&quot;key&quot;]</code>就可以得到其值（所以这玩意就是一个字典不是吗）<br>关于iCalendar的格式（.ics文件），可以在<a href="icalendar.org">官网</a>找到（虽然我直接chatgpt了）</p>
+<h2 id="selenium手动登录，记录cookie，requests数据"><a href="#selenium手动登录，记录cookie，requests数据" class="headerlink" title="selenium手动登录，记录cookie，requests数据"></a>selenium手动登录，记录cookie，requests数据</h2><p>上课内容需要通过点击课表中的课程信息来实现，通过监测<code>network</code>选项卡得到获取课程内容的地址。<br>首先想到的是利用requests来记录数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;&#x27;User-Agent&#x27;:&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36&#x27;&#125;</span><br><span class="line">browser = webdriver.Chrome(ChromeDriverManager().install())</span><br><span class="line"></span><br><span class="line">url = f&quot;https://jwstu.shsmu.edu.cn/Home/GetCalendarTable?MCSID=&#123;MCSID&#125;&amp;CSID=&#123;CSID&#125;&amp;CurriculumID=&#123;CurriculumID&#125;&amp;XXKMID=&amp;CurriculumType=&#123;CurriculumType&#125;&quot;</span><br><span class="line">response = requests.get(url,headers=headers)</span><br></pre></td></tr></table></figure>
+<p>运行程序，发现网页返回空，怀疑是需要登录<br>利用手动登录的网页cookie，使用requests包进行抓取：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">url = &#x27;https://jwstu.shsmu.edu.cn/Home/Index&#x27;</span><br><span class="line">browser.get(url)</span><br><span class="line">time.sleep(20)  # 留20秒或者更长的时间来手动进行登录</span><br><span class="line">cookies = browser.get_cookies()  # 获取Cookie</span><br><span class="line">cookie_dict = &#123;&#125;</span><br><span class="line">for item in cookies:</span><br><span class="line">    cookie_dict[item[&#x27;name&#x27;]] = item[&#x27;value&#x27;]</span><br><span class="line"></span><br><span class="line">response = requests.get(url, cookies=cookie_dict, headers=headers)</span><br></pre></td></tr></table></figure>
+<p>之后提取<code>[&quot;Teacher&quot;]</code>和<code>[&quot;Content&quot;]</code>即可。注意可能会存在一节课有多个不同的授课教师、多个不同的上课内容，需要遍历。</p>
+<h2 id="将iCalendar-ics-文件导入iOS系统的日历中"><a href="#将iCalendar-ics-文件导入iOS系统的日历中" class="headerlink" title="将iCalendar(.ics)文件导入iOS系统的日历中"></a>将iCalendar(.ics)文件导入iOS系统的日历中</h2><p>iOS本身并没有将这个功能内嵌在日历中；但是它给了一个可以从url订阅的机制（虽然没搞明白为啥）<br>google后找到了一个比较好用的导入（快捷指令）：<a target="_blank" rel="noopener" href="https://routinehub.co/shortcut/7005/">ICS To Calendar</a><br>开发者老哥在reddit上的帖子：<a target="_blank" rel="noopener" href="https://www.reddit.com/r/shortcuts/comments/j9cmko/import_ics_files_to_ios_calendar/">Import .ics files to iOS Calendar</a></p>
+<p>到这里，就完成了在iOS日历中有学校课表（包括上课内容）的导入</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/19/%E4%BA%A4%E5%8C%BB%E8%AF%BE%E8%A1%A8%E6%8F%90%E5%8F%96iCal%E6%97%A5%E5%8E%86%E5%B9%B6%E5%AF%BC%E5%85%A5iOS/" data-id="clssxeufx0002i4vghi3r4o14" data-title="交医课表提取iCal日历并导入iOS" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/curriculum/" rel="tag">curriculum</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-hexo博客中简单添加图片" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/02/18/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E7%AE%80%E5%8D%95%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/" class="article-date">
@@ -179,7 +233,7 @@
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/" rel="tag">Blog</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/" rel="tag">blog</a></li></ul>
 
     </footer>
   </div>
@@ -255,8 +309,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><img src="/2024/02/15/%E3%80%8A%E7%AC%AC%E4%BA%8C%E5%8D%81%E6%9D%A1%E3%80%8B%E5%BD%B1%E8%AF%84/64366f327982144d17f8612da31f79f.jpg" alt="alt text"></p>
-
+        
       
     </div>
     <footer class="article-footer">
@@ -412,7 +465,7 @@
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Others/" rel="tag">Others</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/curriculum/" rel="tag">curriculum</a></li></ul>
 
     </footer>
   </div>
@@ -442,7 +495,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/" rel="tag">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Others/" rel="tag">Others</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blog/" rel="tag">Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Others/" rel="tag">Others</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/curriculum/" rel="tag">curriculum</a></li></ul>
     </div>
   </div>
 
@@ -452,7 +505,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/Others/" style="font-size: 10px;">Others</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a>
+      <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/Others/" style="font-size: 10px;">Others</a> <a href="/tags/blog/" style="font-size: 20px;">blog</a> <a href="/tags/curriculum/" style="font-size: 20px;">curriculum</a>
     </div>
   </div>
 
@@ -474,6 +527,10 @@
       <ul>
         
           <li>
+            <a href="/2024/02/19/%E4%BA%A4%E5%8C%BB%E8%AF%BE%E8%A1%A8%E6%8F%90%E5%8F%96iCal%E6%97%A5%E5%8E%86%E5%B9%B6%E5%AF%BC%E5%85%A5iOS/">交医课表提取iCal日历并导入iOS</a>
+          </li>
+        
+          <li>
             <a href="/2024/02/18/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E7%AE%80%E5%8D%95%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/">hexo博客中简单添加图片</a>
           </li>
         
@@ -487,10 +544,6 @@
         
           <li>
             <a href="/2024/02/15/%E3%80%8A%E7%AC%AC%E4%BA%8C%E5%8D%81%E6%9D%A1%E3%80%8B%E5%BD%B1%E8%AF%84/">《第二十条》影评</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/15/hello-world/">Hello World</a>
           </li>
         
       </ul>
